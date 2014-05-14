@@ -1,4 +1,5 @@
 <?
+//матриця суміжності
 $graf = array(
 '1' => array('1' => 0, '2' => 1, '3' => 0, '4' => 0, '5' => 0, '6' => 0, '7' => 0, '8' => 0, '9' => 0, '10' => 0, '11' => 0, '12' => 0, '13' => 0, '14' => 0, '15' => 0),
 '2' => array('1' => 1, '2' => 0, '3' => 1, '4' => 1, '5' => 0, '6' => 0, '7' => 0, '8' => 0, '9' => 0, '10' => 0, '11' => 0, '12' => 1, '13' => 0, '14' => 0, '15' => 0),
@@ -17,6 +18,7 @@ $graf = array(
 '15' => array('1' => 0, '2' => 0, '3' => 0, '4' => 0, '5' => 0, '6' => 0, '7' => 0, '8' => 0, '9' => 0, '10' => 0, '11' => 0, '12' => 0, '13' => 1, '14' => 1, '15' => 0),
 );
 
+//масив міст
 $city_names = array(
 '1'	 => 'Армянськ',
 '2'	 => 'Красноперекопськ',
@@ -36,8 +38,8 @@ $city_names = array(
 );
 //echo "<pre>",var_dump($city_names);
 
-$startPoint = 5;
-$endPoint = 15;
+$startPoint = 5; //початкова точка
+$endPoint = 15; // кінцева точка
 $position = $startPoint;
 $path = "";
 $arResult = array();
@@ -54,13 +56,14 @@ function crawling($graf, $path, $startPoint, $endPoint, $position, $city_names)
 			{
 				//echo "point(".$key.",".$value.");<br>";
 				$position = $key;
-
+				// запускаємо обхід по кожній вітці з кочки в якій ми хараз знаходимся
 				crawling($graf, $path, $startPoint, $endPoint, $position, $city_names);
 			} 
 		}
 	}
 	else
 	{
+		// тут вивід маршрутів
 		$arPath = explode("_", $path);
 		foreach ($arPath as $key => $value) {
 			echo $city_names[$value]." ";
